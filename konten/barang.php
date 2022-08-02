@@ -55,11 +55,52 @@
                                 <td><?= number_format($kolom['harga_jual']); ?></td>
                                 <td><?= $kolom['barcode']; ?></td>
                                 <td>
-                                    <i class="fas fa-edit"></i>
-                                    <a href="aksi/barang.php?aksi=hapus&id=<?= $kolom['id_barang']; ?>"><i class="fas fa-trash"></i></a>
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#ubahModal<?= $kolom['id_barang']; ?>"><i class="fas fa-edit"></i></button>
+
+                                    <a onclick="return confirm('Apakah Anda Yakin Barang Ini Akan Dihapus?')" href="aksi/barang.php?aksi=hapus&id=<?= $kolom['id_barang']; ?>"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
+<!-- Modal Ubah -->
+<div class="modal fade" id="ubahModal<?= $kolom['id_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="aksi/barang.php" method="POST">
+                    <input type="hidden" name="aksi" value="ubah">
+                    
+                    <label for="id_barang">ID Barang</label>
+                    <input type="text" name="id_barang" class="form-control" value="<?= $kolom['id_barang']; ?>" readonly>
 
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" name="nama_barang" value="<?= $kolom['nama_barang']; ?>" class="form-control" required>
+
+                    <label for="stok">Stok</label>
+                    <input type="number" name="stok" value="<?= $kolom['stok']; ?>" class="form-control" required>
+
+                    <label for="harga_pokok">Harga Pokok</label>
+                    <input type="number" name="harga_pokok" value="<?= $kolom['harga_pokok']; ?>" class="form-control" required>
+
+                    <label for="harga_jual">Harga Jual</label>
+                    <input type="number" name="harga_jual" value="<?= $kolom['harga_jual']; ?>" class="form-control" required>
+
+                    <label for="barcode">Barcode</label>
+                    <input type="text" name="barcode" value="<?= $kolom['barcode']; ?>" class="form-control" required>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                         <?php
                         }
                         ?>
