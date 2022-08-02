@@ -56,7 +56,7 @@
                                 <td><?= $kolom['barcode']; ?></td>
                                 <td>
                                     <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash"></i>
+                                    <a href="aksi/barang.php?aksi=hapus&id=<?= $kolom['id_barang']; ?>"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 
@@ -84,6 +84,7 @@
             </div>
             <div class="modal-body">
                 <form action="aksi/barang.php" method="POST">
+                    <input type="hidden" name="aksi" value="tambah">
                     <label for="nama_barang">Nama Barang</label>
                     <input type="text" name="nama_barang" class="form-control" required>
 
