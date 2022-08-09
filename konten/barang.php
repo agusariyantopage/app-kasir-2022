@@ -28,7 +28,7 @@
                 <h5>Data Barang</h5>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped table-sm">
+                <table id="example1" class="table table-bordered table-striped table-sm">
                     <thead>
                         <th>ID</th>
                         <th>NAMA BARANG</th>
@@ -57,7 +57,7 @@
                                 <td>
                                     <button class="btn btn-link" data-toggle="modal" data-target="#ubahModal<?= $kolom['id_barang']; ?>"><i class="fas fa-edit"></i></button>
 
-                                    <a onclick="return confirm('Apakah Anda Yakin Barang Ini Akan Dihapus?')" href="aksi/barang.php?aksi=hapus&id=<?= $kolom['id_barang']; ?>"><i class="fas fa-trash"></i></a>
+                                    <button class="btn btn-link"><a onclick="return confirm('Apakah Anda Yakin Barang Ini Akan Dihapus?')" href="aksi/barang.php?aksi=hapus&id=<?= $kolom['id_barang']; ?>"><i class="fas fa-trash"></i></a></button>
                                 </td>
                             </tr>
 <!-- Modal Ubah -->
