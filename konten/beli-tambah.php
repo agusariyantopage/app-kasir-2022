@@ -28,9 +28,9 @@
                 <div class="form-row">
                     <div class="form-group col-sm-2">
                         <form action="aksi/beli_keranjang.php" method="POST">
-                        <input type="hidden" name="aksi" value="tambah-by-barcode">
+                            <input type="hidden" name="aksi" value="tambah-by-barcode">
 
-                        <input class="form-control" type="number" name="jumlah" placeholder="Jumlah ..." required>
+                            <input class="form-control" type="number" name="jumlah" placeholder="Jumlah ..." required>
                     </div>
                     <div class="form-group col-sm-4">
                         <input class="form-control" type="text" name="barcode" placeholder="Barcode ..." required>
@@ -71,7 +71,7 @@
                         ?>
                             <tr>
                                 <td align="center">
-<a href="aksi/beli_keranjang.php?aksi=hapus&id=<?= $kolom1['id_beli_keranjang']; ?>"><i class="fas fa-trash"></i></a>
+                                    <a href="aksi/beli_keranjang.php?aksi=hapus&id=<?= $kolom1['id_beli_keranjang']; ?>"><i class="fas fa-trash"></i></a>
                                 </td>
                                 <td><?= $no; ?></td>
                                 <td><?= $kolom1['nama_barang']; ?></td>
@@ -82,12 +82,12 @@
                         <?php } ?>
                         <tr>
                             <td colspan="4">Total Pembelian</td>
-            <td colspan="2" align="right"><?= number_format($grandtotal); ?></td>
+                            <td colspan="2" align="right"><?= number_format($grandtotal); ?></td>
                         </tr>
                     </tbody>
                 </table>
 
-                <button class="btn btn-success btn-block mt-5"><i class="fas fa-save"></i> Simpan Pembelian</button>
+                <button class="btn btn-success btn-block mt-5" data-toggle="modal" data-target="#simpanModal"><i class="fas fa-save"></i> Simpan Pembelian</button>
             </div>
             <div class="card-footer"></div>
         </div>
@@ -147,6 +147,49 @@
                     </tbody>
                 </table>
 
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Simpan Pembelian -->
+<div class="modal fade" id="simpanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pencarian Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <label for="id_pemasok">Pemasok</label>
+                    <select name="id_pemasok" class="form-control" required>
+                        <option value="">-- Pilih Pemasok --</option>
+                        <?php
+                        $sql_pemasok = "select * from pemasok order by nama";
+                        $query_pemasok = mysqli_query($koneksi, $sql_pemasok);
+                        while ($kolom_pemasok = mysqli_fetch_array($query_pemasok)) {
+                            echo "<option value='$kolom_pemasok[id_pemasok]'>$kolom_pemasok[nama]</option>";
+                        }
+
+                        ?>
+                    </select>
+
+                    <label for="tanggal">Tanggal</label>
+                    <input type="date" name="tanggal" class="form-control" required>
+
+                    <label for="waktu">Jam</label>
+                    <input type="time" name="waktu" class="form-control" required>
+
+                    <button class="btn btn-info btn-block mt-2" type="submit"><i class="fas fa-save"></i> Simpan</button>
+                </form>
             </div>
             <div class="modal-footer">
 
