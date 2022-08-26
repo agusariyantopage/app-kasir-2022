@@ -20,8 +20,8 @@
     <div class="container-fluid">
         <!-- Tombol Tambah -->
         <a href="index.php?hal=beli-tambah"><button type="button" class="btn btn-primary mb-2">
-            Tambah
-        </button></a>
+                Tambah
+            </button></a>
 
         <div class="card">
             <div class="card-header">
@@ -33,14 +33,14 @@
                         <th>ID</th>
                         <th>TANGGAL</th>
                         <th>WAKTU</th>
-                        <th>ID PEMASOK</th>
-                        <th>TOTAL ITEM</th>                        
+                        <th>NAMA PEMASOK</th>
+                        <th>TOTAL ITEM</th>
                         <th>TOTAL BELANJA</th>
                         <th>AKSI</th>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "select * from beli";
+                        $sql = "SELECT beli.*,pemasok.nama,(SELECT SUM(jumlah) FROM beli_detail WHERE id_beli=beli.id_beli) AS total_item,(SELECT SUM(jumlah*harga_beli) FROM beli_detail WHERE id_beli=beli.id_beli) AS total_belanja FROM beli,pemasok WHERE beli.id_pemasok=pemasok.id_pemasok";
                         $query = mysqli_query($koneksi, $sql);
                         while ($kolom = mysqli_fetch_array($query)) {
 
@@ -50,10 +50,13 @@
                                 <td><?= $kolom['id_beli']; ?></td>
                                 <td><?= $kolom['tanggal']; ?></td>
                                 <td><?= $kolom['waktu']; ?></td>
-                                <td><?= $kolom['id_pemasok']; ?></td>
-                                <td></td>                             
-                                <td></td>
-                                <td></td>
+                                <td><?= $kolom['nama']; ?></td>
+                                <td><?= number_format($kolom['total_item']); ?></td>
+                                <td><?= number_format($kolom['total_belanja']); ?></td>
+                                <td align="center">
+                                    <a href="#"><i class="fas fa-search"></i></a> | 
+                                    <a href=""><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
 
                         <?php

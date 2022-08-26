@@ -168,7 +168,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form action="aksi/beli.php" method="POST">
+                    <input type="hidden" name="aksi" value="tambah">
                     <label for="id_pemasok">Pemasok</label>
                     <select name="id_pemasok" class="form-control" required>
                         <option value="">-- Pilih Pemasok --</option>
@@ -183,10 +184,10 @@
                     </select>
 
                     <label for="tanggal">Tanggal</label>
-                    <input type="date" name="tanggal" class="form-control" required>
+                    <input type="date" value="<?= date("Y-m-d"); ?>" name="tanggal" class="form-control" required>
 
                     <label for="waktu">Jam</label>
-                    <input type="time" name="waktu" class="form-control" required>
+                    <input type="time" value="<?= date("h:i"); ?>" name="waktu" class="form-control" required>
 
                     <button class="btn btn-info btn-block mt-2" type="submit"><i class="fas fa-save"></i> Simpan</button>
                 </form>
