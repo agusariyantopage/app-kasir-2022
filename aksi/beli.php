@@ -47,3 +47,30 @@ if($_POST){
 
     }
 }
+
+if($_GET){
+    if($_GET['aksi']=='hapus'){
+        $id_beli=$_GET['id_beli'];
+        // Perintah Kurangi Stok Barang
+        $sql="SELECT * FROM beli_detail WHERE id_beli=$id_beli";
+        $query=mysqli_query($koneksi,$sql);
+        while($data=mysqli_fetch_array($query)){
+            $id_barang=$data['id_barang'];
+            $jumlah=$data['jumlah'];
+
+            $sql_update_stok="UPDATE barang SET stok=stok-$jumlah WHERE id_barang=$id_barang";
+            // echo $sql_update_stok."<br>";
+            mysqli_query($koneksi,$sql_update_stok);
+        }
+
+        // Perintah Hapus Tabel beli
+        $sql_hapus_beli="DELETE FROM beli WHERE id_beli=$id_beli";
+        mysqli_query($koneksi,$sql_hapus_beli);
+
+        // Perintah Hapus Tabel beli_detail
+        $sql_hapus_beli_detail="DELETE FROM beli_detail WHERE id_beli=$id_beli";
+        mysqli_query($koneksi,$sql_hapus_beli_detail);
+
+        header("location:../index.php?hal=beli");
+    }
+}

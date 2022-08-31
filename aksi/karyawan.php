@@ -34,6 +34,23 @@ if($_POST){
 
         header('location:../index.php?hal=karyawan');
     }
+    if($_POST['aksi']=='login'){
+        $username=$_POST['username'];
+        $password=$_POST['password'];
+
+        $sql_cek_login="SELECT * FROM karyawan WHERE username='$username' AND password='$password'";
+
+        // echo $sql_cek_login;
+        $query_cek_login=mysqli_query($koneksi,$sql_cek_login);
+        $ketemu=mysqli_num_rows($query_cek_login);
+
+        if($ketemu>=1){
+            echo "Login Sukses";
+        } else {
+            echo "Login Gagal";
+        }
+
+    }
 
 }
 

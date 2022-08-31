@@ -54,8 +54,8 @@
                                 <td><?= number_format($kolom['total_item']); ?></td>
                                 <td><?= number_format($kolom['total_belanja']); ?></td>
                                 <td align="center">
-                                    <a href="#"><i class="fas fa-search"></i></a> | 
-                                    <a href=""><i class="fas fa-trash"></i></a>
+                                    <a href="index.php?hal=beli-detail&id_beli=<?= $kolom['id_beli']; ?>"><i class="fas fa-search"></i></a> | 
+                                    <a href="aksi/beli.php?aksi=hapus&id_beli=<?= $kolom['id_beli']; ?>" onclick="return confirm('Apakah Anda Yakin Akan Dihapus??')"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 

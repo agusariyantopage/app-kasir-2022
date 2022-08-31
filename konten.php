@@ -33,6 +33,10 @@ else if($_GET['hal']=='beli-tambah'){
     $judul="Input Pembelian Baru";
     $konten="konten/beli-tambah.php";
 }
+else if($_GET['hal']=='beli-detail'){
+    $judul="Detail Transaksi Pembelian";
+    $konten="konten/beli-detail.php";
+}
 // Akhir Modul Pembelian
 
 else {
