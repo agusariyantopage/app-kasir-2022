@@ -22,6 +22,10 @@ else if($_GET['hal']=='karyawan'){
     $judul="Data Karyawan";
     $konten="konten/karyawan.php";
 }
+else if($_GET['hal']=='ubah-profil'){
+    $judul="Update Profil Pengguna";
+    $konten="konten/ubah-profil.php";
+}
 // Akhir Modul Data Pokok
 
 // Modul Pembelian
@@ -38,6 +42,21 @@ else if($_GET['hal']=='beli-detail'){
     $konten="konten/beli-detail.php";
 }
 // Akhir Modul Pembelian
+
+// Modul Penjualan
+else if($_GET['hal']=='jual'){
+    $judul="Data Penjualan";
+    $konten="konten/jual.php";
+}
+else if($_GET['hal']=='jual-tambah'){
+    $judul="Input Penjualan Baru";
+    $konten="konten/jual-tambah.php";
+}
+else if($_GET['hal']=='jual-detail'){
+    $judul="Detail Transaksi Penjualan";
+    $konten="konten/jual-detail.php";
+}
+// Akhir Modul Penjualan
 
 else {
     $judul="Halaman Tidak Ditemukan";

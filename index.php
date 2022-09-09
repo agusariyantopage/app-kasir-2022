@@ -1,4 +1,10 @@
 <?php
+  session_start();
+  // Cek Sudah Login Apa Belum
+  if(!$_SESSION){
+    header('location:login.php');
+  }
+  
   include "koneksi.php";
   include "konten.php"; 
   date_default_timezone_set("Asia/Kuala_Lumpur"); 
@@ -89,7 +95,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Agus Ariyanto</a>
+            <a href="index.php?hal=ubah-profil" class="d-block"><?= $_SESSION['nama']; ?></a>
           </div>
         </div>
 
@@ -109,67 +115,23 @@
               <ul class="nav nav-treeview">
               </ul>
             </li>
+           
+            <?php
+              // Menampilkan Menu Sesuai Hak Akses
+
+              if($_SESSION['hak_akses']==1){
+                include "menu_admin.php";
+              }
+              if($_SESSION['hak_akses']==2){
+                include "menu_kasir.php";
+              }
+              if($_SESSION['hak_akses']==3){
+                include "menu_pembelian.php";
+              }
+
+            ?>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                  Data Pokok
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="index.php?hal=barang" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Barang</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="index.php?hal=pemasok" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pemasok</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="index.php?hal=pelanggan" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pelanggan</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="index.php?hal=karyawan" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Karyawan</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="index.php?hal=beli" class="nav-link">
-                <i class="nav-icon fas fa-store"></i>
-                <p>
-                  Pembelian
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-shopping-cart"></i>
-                <p>
-                  Penjualan
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>
-                  Laporan
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="aksi/karyawan.php?aksi=logout" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
                   Keluar
