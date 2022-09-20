@@ -1,3 +1,29 @@
+<?php
+// Menghitung Total Koleksi Barang
+$sql_koleksi="SELECT COUNT(id_barang) AS total_koleksi_barang FROM barang";
+$query_koleksi=mysqli_query($koneksi,$sql_koleksi);
+$data_koleksi=mysqli_fetch_array($query_koleksi);
+$total_koleksi_barang=$data_koleksi['total_koleksi_barang'];
+
+// Menghitung Total Pelanggan
+$sql_pelanggan="SELECT COUNT(id_pelanggan) AS total_koleksi_pelanggan FROM pelanggan";
+$query_pelanggan=mysqli_query($koneksi,$sql_pelanggan);
+$data_pelanggan=mysqli_fetch_array($query_pelanggan);
+$total_koleksi_pelanggan=$data_pelanggan['total_koleksi_pelanggan'];
+
+// Menghitung Total Transaksi Jual
+$sql_transaksi="SELECT COUNT(id_jual) AS total_koleksi_transaksi FROM jual";
+$query_transaksi=mysqli_query($koneksi,$sql_transaksi);
+$data_transaksi=mysqli_fetch_array($query_transaksi);
+$total_koleksi_transaksi=$data_transaksi['total_koleksi_transaksi'];
+
+// Menghitung Total Omset
+$sql_omset="SELECT SUM(harga_jual*jumlah) AS total_omset FROM jual_detail";
+$query_omset=mysqli_query($koneksi,$sql_omset);
+$data_omset=mysqli_fetch_array($query_omset);
+$total_koleksi_omset=$data_omset['total_omset'];
+
+?>
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -24,9 +50,9 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3><?= $total_koleksi_barang; ?></h3>
 
-                        <p>New Orders</p>
+                        <p>Total Koleksi Barang</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -39,9 +65,9 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3><?=$total_koleksi_pelanggan;?></h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Total Pelanggan</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -54,9 +80,9 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3><?= number_format($total_koleksi_transaksi); ?></h3>
 
-                        <p>User Registrations</p>
+                        <p>Total Transaksi</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -69,9 +95,9 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3><?= number_format($total_koleksi_omset);?></h3>
 
-                        <p>Unique Visitors</p>
+                        <p>Total Omset</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>

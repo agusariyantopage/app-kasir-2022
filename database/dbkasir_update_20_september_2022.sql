@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Sep 2022 pada 03.55
+-- Waktu pembuatan: 20 Sep 2022 pada 01.59
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.1.32
 
@@ -42,12 +42,12 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `stok`, `harga_pokok`, `harga_jual`, `barcode`) VALUES
-(1, 'AQUA 600ML', 22, 3400, 4000, '8000000020'),
+(1, 'AQUA 600ML', 21, 3400, 4000, '8000000020'),
 (2, 'Indomie Goreng', 106, 2100, 2500, '8000000013'),
-(3, 'Baterai Alkaline', 6, 10000, 12000, '8000000012'),
+(3, 'Baterai Alkaline', 4, 10000, 12000, '8000000012'),
 (4, 'Chiki Balls', 16, 1200, 1500, '8000000011'),
 (5, 'AC Daikin 1/2 PK', 1, 3000000, 3300000, '8000000017'),
-(6, 'Sosis So Nice', 9, 21000, 21000, '8000000018'),
+(6, 'Sosis So Nice', 6, 21000, 21000, '8000000018'),
 (8, 'Chitato', 15, 1200, 1500, '8000000003'),
 (9, 'AC Gree 1/2 PK', 0, 2800000, 3000000, '8000000019'),
 (10, 'UC 1000 Rasa Lemon', 0, 5100, 5500, '8000000015'),
@@ -140,6 +140,14 @@ CREATE TABLE `jual` (
   `id_pelanggan` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `jual`
+--
+
+INSERT INTO `jual` (`id_jual`, `tanggal`, `waktu`, `id_pelanggan`) VALUES
+(9, '2022-09-16', '11:26:00', 4),
+(10, '2022-09-16', '11:27:00', 6);
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +162,15 @@ CREATE TABLE `jual_detail` (
   `harga_jual` int(10) NOT NULL,
   `jumlah` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jual_detail`
+--
+
+INSERT INTO `jual_detail` (`id_jual_detail`, `id_jual`, `id_barang`, `harga_pokok`, `harga_jual`, `jumlah`) VALUES
+(20, 9, 1, 3400, 4000, 1),
+(21, 10, 3, 10000, 12000, 2),
+(22, 10, 6, 21000, 21000, 3);
 
 -- --------------------------------------------------------
 
@@ -340,19 +357,19 @@ ALTER TABLE `beli_keranjang`
 -- AUTO_INCREMENT untuk tabel `jual`
 --
 ALTER TABLE `jual`
-  MODIFY `id_jual` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_jual` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `jual_detail`
 --
 ALTER TABLE `jual_detail`
-  MODIFY `id_jual_detail` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_jual_detail` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `jual_keranjang`
 --
 ALTER TABLE `jual_keranjang`
-  MODIFY `id_jual_keranjang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_jual_keranjang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `karyawan`
