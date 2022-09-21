@@ -58,6 +58,12 @@ else if($_GET['hal']=='jual-detail'){
 }
 // Akhir Modul Penjualan
 
+// Modul Laporan
+else if($_GET['hal']=='laporan'){
+    $judul="Menu Laporan";
+    $konten="konten/laporan.php";
+}
+
 else {
     $judul="Halaman Tidak Ditemukan";
     $konten="konten/home.php"; // Jika Tidak Ditemukan Diarahkan Ke Halaman Utama
